@@ -12,6 +12,8 @@
         <module>tobto_common</module>
         <module>front_service</module>
         <module>after_service</module>
+        <module>front_web</module>
+        <module>after_web</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -79,6 +81,7 @@
             <artifactId>httpclient</artifactId>
             <version>4.4</version>
         </dependency>
+
     </dependencies>
 
     <build>
