@@ -1,17 +1,26 @@
 package com.czxy.tobto.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+/**
+ * 案例表
+ */
+@Table(name = "m_demo")
 public class MDemo {
-    private Integer dId;
 
-    private String dName;
+    @Id
+    private Integer dId;        //逐渐递增  案例ID
 
-    private String dDesc;
+    private String dName;       //案例名称
 
-    private Integer dRecommend;
+    private String dDesc;       //案例描述
 
-    private Integer dState;
+    private Integer dRecommend;//是否推荐       null.正常案例  0.推荐案例
 
-    private Integer uService;
+    private Integer dState;     //案例状态     案例状态：null.正常 0.删除
+
 
     public MDemo() {
     }
@@ -36,7 +45,4 @@ public class MDemo {
         return dState;
     }
 
-    public Integer getuService() {
-        return uService;
-    }
 }

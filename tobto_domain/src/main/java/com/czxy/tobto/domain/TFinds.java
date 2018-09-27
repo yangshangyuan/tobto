@@ -1,5 +1,8 @@
 package com.czxy.tobto.domain;
 
+import javax.persistence.Table;
+
+@Table(name = "t_finds")
 public class TFinds {
     private Integer fId;
 
