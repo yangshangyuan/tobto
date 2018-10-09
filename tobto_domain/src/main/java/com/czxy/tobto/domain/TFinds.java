@@ -13,7 +13,7 @@ public class TFinds {
 
     private String fUrl;
 
-    private Integer fShow;
+    private Integer fShow;  //是否显示
 
     public TFinds() {
     }

@@ -13,9 +13,9 @@ public class TMerchant {
 
     private String merchantServiceSynopsis;
 
-    private Integer merchantState;
+    private Integer merchantState;              //  商家状态 null.正常 0.停用
 
-    private Integer merchantRecommed;
+    private Integer merchantRecommed;           //  是否推荐 null.不推荐 1. 推荐
 
     public TMerchant() {
     }
