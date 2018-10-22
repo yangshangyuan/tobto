@@ -22,4 +22,12 @@ public class DataGridResult {
     public void setRows(List rows) {
         this.rows = rows;
     }
+
+    public DataGridResult(Long total, List rows) {
+        this.total = total;
+        this.rows = rows;
+    }
+
+    public DataGridResult() {
+    }
 }
