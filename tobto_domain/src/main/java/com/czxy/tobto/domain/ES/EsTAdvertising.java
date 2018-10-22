@@ -1,18 +1,26 @@
-package com.czxy.tobto.domain;
+package com.czxy.tobto.domain.ES;
+
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table(name = "t_advertising")
-public class TAdvertising {
+@Document(indexName = "tbt", type = "tbt",shards = 5,replicas = 1)
+public class EsTAdvertising {
 
     @Id
     private Integer aId;
 
+    @Field(type = FieldType.Text)
     private String aText;
 
+    @Field(type = FieldType.Keyword)
     private Integer aShow;
 
+    @Field(type = FieldType.Keyword)
     private String aPhoto;
 
     public Integer getaId() {
@@ -44,6 +52,16 @@ public class TAdvertising {
     }
 
     public void setaPhoto(String aPhoto) {
+        this.aPhoto = aPhoto;
+    }
+
+    public EsTAdvertising() {
+    }
+
+    public EsTAdvertising(Integer aId, String aText, Integer aShow, String aPhoto) {
+        this.aId = aId;
+        this.aText = aText;
+        this.aShow = aShow;
         this.aPhoto = aPhoto;
     }
 }
