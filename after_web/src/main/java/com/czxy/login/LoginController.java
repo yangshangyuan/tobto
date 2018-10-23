@@ -50,6 +50,7 @@ public class LoginController {
                 return new ResponseEntity<>("/merchant/index.html",HttpStatus.OK);
             }
             if (login.getuPower() == 1 || login.getuService() == 2){
+
                 session.setAttribute("user",login);
                 return new ResponseEntity<>("terrace/index.html",HttpStatus.OK);
             }
