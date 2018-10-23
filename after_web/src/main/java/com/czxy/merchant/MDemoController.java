@@ -20,9 +20,9 @@ public class MDemoController {
     @Autowired
     private MDemoService mDemoService;
     @GetMapping
-    public ResponseEntity<DataGridResult> findPage(Integer page,Integer rows){
+    public ResponseEntity<DataGridResult> findPage(String dName,Integer page,Integer rows){
 
-        DataGridResult result = mDemoService.findPage(page, rows);
+        DataGridResult result = mDemoService.findPage(dName,page, rows);
 
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
