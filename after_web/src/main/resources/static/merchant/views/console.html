@@ -107,36 +107,27 @@
             }
         },{
             id : 'button-delete',
-            text : '显示',
+            text : '修改',
             iconCls : 'icon-cancel',
             handler : function(){
-                var row = $("#grid").datagrid("getSelections");
+                var row = $("#grid").datagrid("getSelected");
                 var str = "";
-                $(row).each(function () {
-                    str +=this.id+",";
+                if(row){
+                    $("#standardForm").form("load",row);
+                    $("#standardWindow").window("open");
+                }else {
+                    $.messager.alert("提示","只能够选择一条数据进行修改")
+                }
 
-                })
-
-                $.messager.confirm('确认','您确认想要删除记录吗？',function(r){
-                    if (r){
-                        $.ajax({
-                            url:"/standard/"+str,
-                            type:"delete",
-                            dataType:"json",
-                            statusCode:{
-                                204:function () {
-                                    $.messager.alert("提示","删除成功");
-                                    $("#grid").datagrid("reload");
-                                },
-                                500:function () {
-                                    alert("失败")
-                                }
-                            }
-
-
-                        });
-                    }
-                });
+            }
+        },{
+            id : 'button-add-a',
+            text : '增加',
+            iconCls : 'icon-add',
+            handler : function(){
+                // alert('增加');
+                //$("#standardWindow").window('open');
+                $("#updateWindow").window('open');
             }
         }];
 
@@ -210,41 +201,40 @@
         <form id="standardForm">
             <table class="table-edit" width="80%" align="center">
                 <tr class="title">
-                    <td colspan="2">收派标准信息
+                    <td colspan="2">
                         <!--提供隐藏域 装载id -->
-                        <input type="hidden" name="id" />
+                        <input type="hidden" name="dId" />
                     </td>
                 </tr>
                 <tr>
-                    <td>收派标准名称</td>
+                    <td>案例名称</td>
                     <td>
-                        <input type="text" name="name"
-                               class="easyui-validatebox" data-options="required:true" />
+                        <input type="text" name="dName"
+                                />
                     </td>
                 </tr>
                 <tr>
-                    <td>最小重量</td>
+                    <td>案例描述</td>
                     <td>
-                        <input type="text" name="minWeight"
-                               class="easyui-numberbox" required="true" />
+                        <input type="text" name="dDesc"/>
                     </td>
                 </tr>
                 <tr>
-                    <td>最大重量</td>
+                    <td>是否推荐</td>
                     <td>
-                        <input type="text" name="maxWeight" class="easyui-numberbox" required="true" />
+                       <select name="dRecommend">
+                           <option value="1">推荐</option>
+                           <option value="0">不推荐</option>
+                       </select>
                     </td>
                 </tr>
                 <tr>
-                    <td>最小长度</td>
+                    <td>案例状态</td>
                     <td>
-                        <input type="text" name="minLength" class="easyui-numberbox" required="true" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>最大长度</td>
-                    <td>
-                        <input type="text" name="maxLength" class="easyui-numberbox" required="true" />
+                        <select name="dState">
+                            <option value="1">上架</option>
+                            <option value="0">已下架</option>
+                        </select>
                     </td>
                 </tr>
             </table>
@@ -265,40 +255,35 @@
             <form id="updateForm"   method="post">
                 <input type="hidden" name="id" value="" />
                 <table class="table-edit" width="80%" align="center">
-                    <tr class="title">
-                        <td colspan="2">收派标准信息
+                    <tr>
+                        <td>案例名称</td>
+                        <td>
+                            <input type="text" name="dName"
+                            />
                         </td>
                     </tr>
                     <tr>
-                        <td>收派标准名称</td>
+                        <td>案例描述</td>
                         <td>
-                            <input type="text" name="name"
-                                   class="easyui-validatebox" data-options="required:true" />
+                            <input type="text" name="dDesc"/>
                         </td>
                     </tr>
                     <tr>
-                        <td>最小重量</td>
+                        <td>是否推荐</td>
                         <td>
-                            <input type="text" name="minWeight"
-                                   class="easyui-numberbox" required="true" />
+                            <select name="dRecommend">
+                                <option value="1">推荐</option>
+                                <option value="0">不推荐</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>
-                        <td>最大重量</td>
+                        <td>案例状态</td>
                         <td>
-                            <input type="text" name="maxWeight" class="easyui-numberbox" required="true" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>最小长度</td>
-                        <td>
-                            <input type="text" name="minLength" class="easyui-numberbox" required="true" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>最大长度</td>
-                        <td>
-                            <input type="text" name="maxLength" class="easyui-numberbox" required="true" />
+                            <select name="dState">
+                                <option value="1">上架</option>
+                                <option value="0">已下架</option>
+                            </select>
                         </td>
                     </tr>
                 </table>
@@ -315,19 +300,21 @@
 </div>
 </body>
 <script type="text/javascript">
+
+    //修改
     $(function(){
 
-        $("#updatee").bind("click",function () {
-            if($("#updateForm").form("validate")){
+        $("#save").bind("click",function () {
+            if($("#standardForm").form("validate")){
                 $.ajax({
-                    url:"/standard",
+                    url:"/product/all",
                     type:"put",
                     dataType:"json",
-                    data:$("#updateForm").serialize(),
+                    data:$("#standardForm").serialize(),
                     statusCode:{
-                        204:function () {
+                        201:function () {
                             $.messager.alert("提示","修改成功");
-                            $("#updateWindow").window("close");
+                            $("#standardWindow").window("close");
                             $("#grid").datagrid("reload");
                         },
                         500:function () {
@@ -337,21 +324,24 @@
                 })
             }
         })
+
+
+
         // 对收派标准 save按钮，添加click事件
-        $("#save").bind('click',function(){
+        $("#updatee").bind('click',function(){
             // 判断是否form中所有表单对象 都是通过校验
-            if($("#standardForm").form('validate')){
+            if($("#updateForm").form('validate')){
                 // 通过校验
                 //$("#standardForm").submit();
                 //提交到后台的RESTful接口
                 $.ajax({
                     type: "POST",
-                    url: "/standard",
-                    data: $("#standardForm").serialize(),
+                    url: "/product/add",
+                    data: $("#updateForm").serialize(),
                     statusCode : {
                         201 : function(){
                             $.messager.alert('提示','新增成功!');
-                            $("#standardWindow").window('close');
+                            $("#updateWindow").window('close');
                             $('#grid').datagrid('reload');
                         },
                         500 : function(){
