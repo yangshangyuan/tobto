@@ -14,7 +14,6 @@ KindEditor.plugin('insertfile', function(K) {
 		formatUploadUrl = K.undef(self.formatUploadUrl, true),
 		uploadJson = K.undef(self.uploadJson, self.basePath + 'php/upload_json.php'),
 		extraParams = K.undef(self.extraFileUploadParams, {}),
-		filePostName = K.undef(self.filePostName, 'imgFile'),
 		lang = self.lang(name + '.');
 	self.plugin.fileDialog = function(options) {
 		var fileUrl = K.undef(options.fileUrl, 'http://'),
@@ -70,7 +69,7 @@ KindEditor.plugin('insertfile', function(K) {
 		if (allowFileUpload) {
 			var uploadbutton = K.uploadbutton({
 				button : K('.ke-upload-button', div)[0],
-				fieldName : filePostName,
+				fieldName : 'imgFile',
 				url : K.addParam(uploadJson, 'dir=file'),
 				extraParams : extraParams,
 				afterUpload : function(data) {
@@ -82,7 +81,7 @@ KindEditor.plugin('insertfile', function(K) {
 						}
 						urlBox.val(url);
 						if (self.afterUpload) {
-							self.afterUpload.call(self, url, data, name);
+							self.afterUpload.call(self, url);
 						}
 						alert(self.lang('uploadSuccess'));
 					} else {
@@ -110,9 +109,6 @@ KindEditor.plugin('insertfile', function(K) {
 						clickFn : function(url, title) {
 							if (self.dialogs.length > 1) {
 								K('[name="url"]', div).val(url);
-								if (self.afterSelectFile) {
-									self.afterSelectFile.call(self, url);
-								}
 								self.hideDialog();
 							}
 						}
@@ -130,7 +126,7 @@ KindEditor.plugin('insertfile', function(K) {
 	self.clickToolbar(name, function() {
 		self.plugin.fileDialog({
 			clickFn : function(url, title) {
-				var html = '<a class="ke-insertfile" href="' + url + '" data-ke-src="' + url + '" target="_blank">' + title + '</a>';
+				var html = '<a href="' + url + '" data-ke-src="' + url + '" target="_blank">' + title + '</a>';
 				self.insertHtml(html).hideDialog().focus();
 			}
 		});
