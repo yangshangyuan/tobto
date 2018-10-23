@@ -1,0 +1,128 @@
+.f-m-yh{font-family:"Microsoft YaHei","宋体",sans-serif}
+.f-m-st{font-family:"宋体",sans-serif}
+.btn{display:block;cursor:pointer}
+.pages a{color:#aaa}
+.pages strong{background-color:#01a469;padding:4px 8px;color:#fff}
+.pages a,.pages strong,.pages em{padding:3px 7px;border:1px solid #e8e8e8}
+.pages em{color:#aaa;font-weight:normal}
+.pages b{font-weight:normal}
+.page-width{width:970px;margin:0 auto}
+.no-select{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+.one-hour-class{background:#8dc8de;width:100%;height:547px;overflow:hidden}
+.one-hour-class-box{width:970px;margin:0 auto;height:460px;position:relative}
+.xzx-page-common-bg{background:url('//img.to8to.com/front_end/bg/xuezhuangxiu-bg.png?v=20131121103152') no-repeat}
+.one-hour-class-box-top{width:970px;margin:0 auto;height:460px;position:relative;height:70px}
+.one-hour-class-box-top-small{width:970px;margin:0 auto;height:460px;position:relative;height:90px;display:none}
+.one-hour-class-box-top-left{background:url('//img.to8to.com/front_end/bg/xuezhuangxiu-bg.png?v=20131121103152') no-repeat;width:364px;height:70px;float:left}
+.one-hour-class-box-top-right{background:url('//img.to8to.com/front_end/bg/xuezhuangxiu-bg.png?v=20131121103152') no-repeat;background-position:0 -73px;width:131px;height:70px;float:right;margin-right:40px}
+.one-hour-class-box-bg-first{width:970px;margin:0 auto;height:460px;position:relative;background:#74b4cd;position:absolute;top:8px;left:8px}
+.one-hour-class-box-bg-second{width:970px;margin:0 auto;height:460px;position:relative;background:#e8e8e8;position:absolute;top:5px;left:5px}
+.one-hour-class-box-bg-third{width:970px;margin:0 auto;height:460px;position:relative;height:461px;background:#fff;position:absolute;top:0;left:0}
+.one-hour-class-title{float:left;width:225px;padding:10px 0 0 10px;overflow:auto}
+.class-title-box{width:220px;height:394px}
+.one-hour-class-title-name{width:180px;height:30px;background:#f5f4f2;line-height:30px;color:#777;padding-left:20px;margin-bottom:3px;font-size:14px;position:relative}
+.title-status-bar{position:absolute;top:0;right:10px;font-size:18px;color:#8dc8de}
+.title-status-bar.status-on{width:10px;height:2px;border-top:2px solid #fff;margin-top:14px}
+.one-hour-class-title-name:hover{color:#777;text-decoration:none}
+.one-hour-class-title-name.title-name-on{background:#fc6373;color:#fff}
+.title-box{width:215px;display:none}
+.title-box.title-box-on{display:block}
+.title-item{margin-left:10px;height:26px;line-height:26px;color:#777}
+.title-item-icon{width:2px;height:2px;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;-o-border-radius:2px;-ms-border-radius:2px;-khtml-border-radius:2px;background:#8dc8de;float:left;margin-top:12px;overflow:hidden}
+.title-item-txt{float:left;margin-left:5px}
+.title-item.title-item-on,.title-item:hover{color:#777}
+.one-hour-class-close-btn{background:url('//img.to8to.com/front_end/bg/xuezhuangxiu-bg.png?v=20131121103152') no-repeat;width:135px;height:36px;background-position:0 -146px;margin:0 auto;margin-top:6px}
+.one-hour-class-book-line{background:url('//img.to8to.com/front_end/bg/xuezhuangxiu-bg.png?v=20131121103152') no-repeat;background-position:-148px -73px;width:34px;height:465px;float:left}
+.one-hour-class-content{float:left;padding:10px 0 0 10px;position:relative}
+.class-content-box{width:680px;height:447px;position:relative}
+#class-content-art{display:none;}
+.art-content{width:637px;color:#333;margin-left:20px;margin-right:13px;font-size:16px !important;}
+.art-content p{line-height:28px;color:#333;font-size:16px !important;}
+.art-content p a{color:#01a469;text-decoration:underline;}
+.art-content p img{margin-top:20px;}
+.art-title{font-size:24px;font-family:"Microsoft YaHei","宋体",sans-serif;margin:5px 13px 9px 20px;width:637px;border-bottom:2px solid #f5f4f2;color:#5c5c5c;height:45px;line-height:40px}
+.content-start-btn{width:105px;height:105px;position:absolute;top:259px;left:539px;background:#fff;filter:alpha(opacity=1);-moz-opacity:.01;-khtml-opacity:.01;opacity:.01}
+.content-start-btn-hover{background:url('//img.to8to.com/front_end/bg/xuezhuangxiu-bg.png?v=20140306') no-repeat;width:105px;height:105px;position:absolute;top:260px;left:540px;background-position:0 -404px;display:none}
+.xzx-content-box{width:100%;overflow:auto;background:#fff;z-index:4;position:relative}
+.focus{width:970px;margin:0 auto;height:347px;border:1px solid #e8e8e8;margin-top:18px;z-index:4}
+.focus-title{background:url('//img.to8to.com/front_end/bg/xuezhuangxiu-bg.png?v=20131121103152') no-repeat;background-position:0 -555px;width:315px;height:28px;text-indent:-999px;margin:13px 0 30px 12px}
+.focus-item{width:300px;height:255px;float:left}
+.free-net-class{margin-left:12px}
+.focus-item-title-box{height:32px;line-height:32px}
+.focus-item-title-txt{float:left;padding-left:34px;height:32px;font-size:14px;background:url('//img.to8to.com/front_end/bg/xuezhuangxiu-bg.png?v=20131121103152') no-repeat;width:84px}
+.focus-item-title-txt a{color:#444;}
+.focus-item-title-txt a:hover{color:#01a469;text-decoration:none}
+.free-net-class-txt{background-position:0 -253px}
+.video-class-txt{background-position:0 -185px}
+.diary-class-txt{background-position:0 -290px;padding-left:44px;width:74px}
+.focus-item-title-line{float:left;height:1px;width:155px;border-top:1px dashed #8c8c8c;margin:15px 0 0 24px}
+.focus-item-img-box,.focus-item-img-box:hover{width:300px;height:200px;position:relative;overflow:hidden;text-decoration:none}
+.focus-item-link,.focus-item-link:hover{color:#666;width:100%;text-align:center;margin-top:8px}
+.focus-item-sign{width:100px;height:38px;background:#01a469;font-family:"Microsoft YaHei","宋体",sans-serif;text-align:center;line-height:38px;color:#fff;font-size:18px;position:absolute;top:150px;z-index:10;left:0}
+.focus-item-sign-arrow-box{height:38px;width:38px;background-color:#fff;position:absolute;top:150px;left:100px;z-index:10}
+.focus-item-sign-arrow{background:url('//img.to8to.com/front_end/bg/xuezhuangxiu-bg.png?v=20131121103152') no-repeat;background-position:0 -217px;width:16px;height:30px;margin:7px 0 0 11px}
+.focus-item-img-box-hover{width:300px;height:200px;position:absolute;top:0;left:0;background:#000;filter:alpha(opacity=70);-moz-opacity:.7;-khtml-opacity:.7;opacity:.7;display:none}
+.focus-item-img-box-icon{position:absolute;display:none}
+.focus-item-img-icon-see{left:127px;top:83px}
+.focus-item-img-icon-tv{top:75px;left:132px}
+.video-class,.diary-class{margin-left:22px}
+.zxfs-xcsc,.zxlc,.zxzt,.jhkj{width:970px;margin:0 auto;height:295px;border:1px solid #e8e8e8;margin-top:15px;padding-top:10px;z-index:4}
+.zxfs,.xcsc{width:450px;float:left}
+.zxfs-xcsc-line{width:45px;height:275px;float:left;margin-top:5px}
+.zxfs-xcsc-line-border{width:3px;margin:0 auto;height:275px;background:url('//img.to8to.com/front_end/bg/xuezhuangxiu-bg.png?v=20131121103152') no-repeat;background-position:-397px 0}
+.zxfs{margin-left:10px}
+.zxfs-xcsc-title-box{height:30px;line-height:30px}
+.zxfs-xcsc-title-txt,.zxlc-title-txt,.zxzt-title-txt,.jhkj-title-txt{font-size:20px;font-family:"Microsoft YaHei","宋体",sans-serif;float:left}
+.zxfs-xcsc-title-txt:hover,.zxlc-title-txt:hover,.zxzt-title-txt:hover,.jhkj-title-txt:hover{color:#01a469}
+.zxfs-xcsc-more,.zxlc-more,.zxzt-more,.jhkj-more{width:40px;height:20px;background:url('//img.to8to.com/front_end/bg/xuezhuangxiu-bg.png?v=20131121103152') no-repeat;background-position:-360px -290px;float:right;margin-top:5px;line-height:20px;color:#999;text-indent:-9999px}
+.zxfs-xcsc-more:hover,.zxlc-more:hover,.zxzt-more:hover,.jhkj-more:hover{background-position:-360px -325px}
+.zxfs-xcsc-title-small{height:35px}
+.zxfs-xcsc-content-left,.zxfs-xcsc-content-right{float:left;width:205px}
+.zxfs-xcsc-content-right{margin-left:38px}
+.zxfs-xcsc-title-small,.zxfs-xcsc-small-link,.zxfs-xcsc-small-link:hover{color:#01a469;line-height:22px}
+.zxfs-xcsc-content-title,.zxfs-xcsc-content-title:hover{color:#444;font-size:14px;font-weight:bold;margin:15px 0 10px;width:205px;overflow:hidden;height:16px}
+.zxfs-xcsc-content-summary,.zxfs-xcsc-content-summary:hover{width:205px;color:#666;line-height:18px;}
+.zxlc{height:365px}
+.zxlc-title-box,.zxzt-title-box,.jhkj-title-box{width:945px;height:30px;margin:0 auto}
+.zxlc-item{width:280px;margin-left:10px;float:left;*margin-left: 5px;}
+.zxlc-item-img-box{position:relative;width:280px;height:150px}
+.zxlc-item-img-txt{background:url(//img.to8to.com/front_end/bg/xzx-index-zxlc.png) no-repeat;position:absolute;width:72px;height:27px;top:0;left:0;text-align:center;line-height:27px;color:#fff;font-size:14px}
+.zxlc-item-title-first,.zxlc-item-title-first:hover{color:#444;font-size:14px;font-weight:bold;height:40px;line-height:40px;width:280px;overflow:hidden}
+.zxlc-item-title,.zxlc-item-title:hover{color:#666;margin-bottom:5px;width:280px;overflow:hidden;height:16px;line-height:16px}
+.zxlc-second{margin:0 45px 0 55px}
+.zxzt{height:195px}
+.zxzt-item,.zxzt-item-first{width:470px;margin-left:20px;float:left}
+.zxzt-item-first{margin-left:10px}
+.zxzt-item-img{float:left}
+.zxzt-item-txt{margin-left:15px;_margin-left:8px;float:left;width:200px}
+.zxzt-item-txt-title,.zxzt-item-txt-title:hover{background:#01a469;color:#fff;font-size:14px;height:32px;line-height:32px;text-align:center;margin:15px 0 12px;font-weight:bold;width:200px;overflow:hidden;text-decoration:none}
+.zxzt-item-txt-summary,.zxzt-item-txt-summary:hover{color:#666;width:200px;height:90px;overflow:hidden;line-height:24px;padding-left:6px;}
+.jhkj{height:283px;margin-bottom:20px}
+.jhkj-item,.jhkj-item-first{margin-left:9px;float:left}
+.jhkj-item-first{margin-left:10px;_margin-left:8px}
+.jhkj-item-img-box{width:183px;height:140px;position:relative}
+.jhkj-item-title-bg{background:#000;filter:alpha(opacity=70);-moz-opacity:.7;-khtml-opacity:.7;opacity:.7;width:183px;height:18px;position:absolute;top:122px;left:0}
+.jhkj-item-title-txt{color:#fff;width:183px;text-align:center;line-height:18px;position:absolute;top:122px;left:0}
+.jhkj-designer{margin:15px 0;color:#01a469}
+.jhkj-designer-link,.jhkj-designer-link:hover{color:#01a469;padding-right:10px}
+.jhkj-item-link,.jhkj-item-link:hover{width:183px;height:16px;overflow:hidden;color:#666;font-size:14px;font-weight:bold}
+.jhkj-play-times{margin-top:12px;color:#999}
+.jhkj-item-img-box-hover{width:183px;height:140px;position:absolute;top:0;left:0;background:#000;filter:alpha(opacity=70);-moz-opacity:.7;-khtml-opacity:.7;opacity:.7;display:none}
+.jhkj-item-img-box-icon{position:absolute;display:none;left:67px;top:53px}
+/*  底部浮动框代码 */
+ #flex_login {width: 100%;  position: fixed; bottom: 0px; 
+_position: absolute; _top: expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0))); 
+ z-index: 2900; height: 80px; overflow: hidden; } 
+#bm {float:left;width: 580px; padding-top: 25px;}
+#bm input{margin-right:10px;}
+#bm .ipt {display:inline-block; float:left;width: 144px; height: 42px; line-height: 42px; color: #b8b7b7; border-radius: 5px; border: 0; font-size: 12px; padding-left: 12px;_margin_right:10px; }
+#bm .subapply {width: 90px; height: 44px; float:left; background-color: #01a469; border-radius: 5px; border: 0; font-size: 14px; color: #fff;  text-align: center; cursor: pointer; filter: alpha(opacity=90); opacity: 0.9; } 
+#bm label{display:inline-block; float:left;width:140px;line-height:42px;text-align:center;font-size:16px;font-family: "Microsoft YaHei";color:#fff;}
+#bm label span{color:#ff6766;}
+#flex_info{width:1000px;margin: 0 auto;}
+#bm_left{width: 420px;float: left;padding-top: 25px;}
+#bm_left h3{padding:0;margin:0;font-family: "微软雅黑";font-size: 20px;line-height:28px;color:#fff;font-size: normal;}
+#bm_left p{padding:0;margin:0;font-size: 12px;color:#fff;}
+.close_flex{position: absolute; top:10px; right:10px;width: 14px;height: 14px;line-height: 14px;font-size: 14px;color:#fff;cursor: pointer;text-align: center;}
+.transparent-layout{width: 100%; height: 100%; position: absolute; z-index: 2901;filter: alpha(opacity=90); opacity: 0.9; background-color: #262626;}
+.display-layout{width: 100%; height: 100%; position: absolute; z-index: 2902;}
