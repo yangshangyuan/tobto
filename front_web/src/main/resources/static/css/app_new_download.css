@@ -1,0 +1,125 @@
+.ielt8{overflow: hidden;}
+body{overflow: hidden;}
+/*活动页公用他头部*/
+.act_nav{width: 980px;height: 35px; margin: 0 auto;}
+.act_header{ position: absolute; height: 35px; background: #fff; z-index: 2000;width: 100%;}
+.act_top{ width: 100%; height: 35px; display: table; }
+.act_nav_left ul li, .act_nav_right ul li{display: inline-block; height: 35px; position: relative; line-height: 35px;  }
+.act_nav_left ul li{vertical-align: middle;}
+.ielt8 .act_nav_left ul li, .ielt8 .act_nav_right ul li{display: inline; zoom: 1 }
+.act_nav_left ul li.on a{color:#00af63}
+.act_nav_left ul li a{height: 35px; display: inline-block; line-height: 35px; color: #333; margin-right:26px; }
+.act_nav_left ul li a:hover {color: #f25618; }
+.act_nav_right {float: right; height: 35px; }
+.act_nav_right ul li a, .act_nav_right ul li span, .act_nav_right ul li em{float: left; margin-left: 20px; display: inline; color: #999;}
+.act_nav_right ul li a:hover{color: #f25618; text-decoration: none }
+.act_nav_right ul li span{height: 12px; background: #eee; margin-top: 11px; width: 1px; overflow: hidden }
+.act_header .act_center{width: 100%; height: 100px }
+
+
+.appdownload_container_palva{position:relative; width:100%;height:100%; overflow:hidden;}
+.appdownload_ico_title,.appdownload_ico_iosclient,.appdownload_ico_adroclient,.clinet_icon,.appdownload_ico_tips,.appdownload_ico_lightspot,.appdownload_ico_dtline,.appdownload_ico_zxquote,.mag_ico_glass,.appdownload_ico_pricelist,.appdownload_ico_zxstatus,.appdownload_ico_shoplist,.tag_left,.tag_right{background:url(http://img.to8to.com/email/app_download/appdownload_new_global.png) no-repeat;}
+.appdownload_container_palva .moblie_client_details .appdownload_ico_title{position: absolute;left: 0;top: 270px;width: 406px;height: 77px;background-position: 0 0;margin-left: 76px;}
+.appdownload_right_index{position: fixed;right: 70px;top: 40%;z-index: 999;}
+.appdownload_right_index ul li{width:15px;height:20px;overflow:hidden;}
+.appdownload_right_index a{width: 10px;height: 10px;overflow:hidden;display: block;margin: 0 auto;background-position: -396px -101px;}
+.appdownload_right_index .on a{background-position: -397px -89px;}
+.appdownload_container_palva .moblie_client .moblie_client_details{width: 980px;height:100%;margin: 0 auto;text-align: center;position: relative;overflow:hidden;}
+.appdownload_container_palva .moblie_client .bn_phone{display:block;position: absolute;  left: 496px;
+  bottom: 0;  width: 453px;  height: 764px; z-index: 20;}
+.app_common .app_intro{font-size: 21px;line-height: 39px;color: #333;letter-spacing: 8px;}
+.moblie_client .app_intro{position: absolute;left: 56px;top: 358px;}
+.appdownload_container_palva .moblie_client .client_download{position: absolute;left: 72px;top: 466px;z-index: 21;width:375px;}
+.client_download a{width: 192px;height: 57px;border:1px solid #333;border-radius: 5px;}
+.client_download .appdownload_ico_iosclient{background-position: -1px -87px;float: left;background-color:#333;margin-top:6px;}
+.client_download .appdownload_ico_iosclient:hover{background-color: #000;}
+.client_download .appdownload_ico_adroclient{background-position: -198px -86px;float: left;margin-top: 15px;background-color:#333;}
+.client_download .appdownload_ico_adroclient:hover{background-color: #000;}
+.app_common .cm_box{width: 2000px;height: 960px;position: relative;}
+
+.app_common .code_download{position: absolute;right: 40px;bottom: 40px;z-index: 20;width: auto;text-align: center;*width: 200px;}
+.app_common .code_download span{font-size: 18px;margin-top: 8px;display: block;color: #333;white-space: nowrap;}
+.app_common .code_download .code_pic{width: 150px;height: 150px;display: block;margin: 0 auto;}
+.moblie_client .code_download span{color: #fff;}
+.client_download .code_download_new{float:right;text-align:center;}
+
+.appdownload_container_palva .app_diary .mark_diary{display: block;width:870px;height:213px;position: absolute;left: -82%;top: 36%;background-position: 0 0;}
+.app_common .gallery_fot{width:5000px;height: 31%;position: absolute;bottom: -40px;background-color: #fff;margin-left: -2500px;left: 50%;}
+.app_common .fot_details{position: absolute;width: 980px;left: 50%;bottom:0;margin-left: -490px;text-align: center;padding-bottom: 70px;}
+.app_common .tip_point{display: inline-block;margin: 0 10px;width: 10px;height: 10px;vertical-align: middle;}
+.app_common .appdownload_title{font-size: 48px;color: #333;margin-top: 7%;}
+.app_gallery .appdownload_ico_zxquote{position: absolute;left: 183px;top: 478px;width: 267px;margin-left: -358px;height: 58px;background-position: 0 -219px;z-index: 13;}
+
+.app_diary .appdownload_ico_pricelist{width: 150px;height: 498px;position: absolute;left: -123px;top: 40px;background-position: -412px 0;}
+.app_diary .appdownload_ico_zxstatus{width: 68px;height: 196px;position: absolute;right: -203px;bottom: 98px;background-position: -571px 0;}
+.app_diary .appdownload_ico_shoplist{width: 332px;height: 86px;position: absolute;left: 102px;bottom: 203px;background-position: 0 -327px;z-index: 13;}
+
+.moblie_client{background: url(http://img.to8to.com/email/app_download/app_download_bg1.png?20150724) top center no-repeat;color: #000;}
+.app_gallery{background: url(http://img.to8to.com/email/app_download/app_download_bg2.png) top center no-repeat;}
+.app_diary{background: url(http://img.to8to.com/email/app_download/app_download_bg3.png) top center no-repeat;}
+.app_tcgs{background: url(http://img.to8to.com/email/app_download/app_download_bg4.png) top center no-repeat;}
+
+.app_tcgs .style_tag_l,.app_tcgs .style_tag_r{position: absolute;z-index: 30;}
+
+/*
+.tag_left,.tag_right,.tag_center{float: left;}
+.style_tag_l .tag_left{width: 17px;height: 42px;background-position:  -113px -279px;}
+.style_tag_l .tag_right{width: 55px;height: 42px;background-position:  -60px -279px;}
+.app_tcgs .tag_center{height: 42px;background-color: #34c083;color: #fff;font-size: 27px;padding: 0 10px;}
+
+.style_tag_r .tag_left{width: 55px;height: 42px;background-position: 3px -279px;}
+.style_tag_r .tag_right{width: 17px;height: 42px;background-position: -139px -279px;}  */
+
+.app_tcgs .tag_ms{left: -38px;top: 203px;}
+.app_tcgs .tag_lsyt{left: -125px;top: 328px;}
+.app_tcgs .tag_xdjy{left: -113px;top: 430px;}
+.app_tcgs .tag_oscf{right: -133px;top: 191px;}
+.app_tcgs .tag_rsysyt{right: -107px;top: 296px;}
+.app_tcgs .tag_bsws{right: -76px;top: 439px;}
+
+.app_gallery .quote_info{width: 355px;height: 627px;position: absolute;left: 50%;top:15.37%;margin-left: -177px;z-index: 10;}
+.app_diary .diary_info{width: 355px;height: 627px;position: absolute;left: 50%;top:15.37%;margin-left: -177px;z-index: 1;}
+.app_tcgs .pics_info{width: 355px;height: 627px;position: absolute;left: 50%;top:15.37%;margin-left: -177px;z-index: 1;}
+
+.app_gallery .appdownload_ico_lightspot{width: 25px;height: 25px;background-position: -295px -425px;float: left;margin-top: 10px;}
+.app_gallery .glr_inwrap{position: absolute;}
+.app_gallery .glr_inwrap span{float: left;font-size: 26px;color: #000;}
+.glr_inwrap .zx_mid{margin-left: 16px;}
+.glr_inwrap .zx_simple{margin-right: 16px;}
+.glr_inwrap .zx_solo{margin-left: 16px;margin-top: -16px;}
+.app_gallery .appdownload_ico_dtline{position: absolute;z-index: 12;}
+
+.app_gallery .dt_line1{width: 389px;height: 290px;right: -11px;top: -4px;background-position: 0 -555px;z-index: 1;}
+.app_gallery .dt_line2{width: 11px;height: 53px;left: -41px;top: 300px;background-position: -397px -555px;}
+.app_gallery .dt_line3{width: 106px;height: 145px;left: -39px;top: 366px;background-position: -415px -555px;}
+.app_gallery .dt_line4{width: 386px;height: 212px;left: -39px;top: 298px;background-position: 0 -555px;}
+.app_gallery .dt_line5{width: 75px;height: 87px;left: 355px;top: 301px;background-position: -415px -555px;}
+
+.app_gallery .glr_pst1{right: -150px;top: -31px;}
+.app_gallery .glr_pst2{left: -107px;top: 266px;}
+.app_gallery .glr_pst3{left: -121px;top: 337px;}
+.app_gallery .glr_pst4{right: -105px;top: 273px;}
+.app_gallery .glr_pst5{right: -166px;top: 372px;}
+
+.appdownload_container_palva .appdownload_tips{color: #333;position: absolute;left: 79px;top: 10%;}
+.appdownload_container_palva .appdownload_intro{font-size: 24px;position: absolute;left: 59px;top: 20%;}
+.appdownload_container_palva .appdownload_mobile_pic{position: absolute;left: 0;top: 0;z-index: 2;}
+.appdownload_container_palva .app_fotbottom_details{width: 360px;height: 100%;margin: 0 auto;position: relative;}
+.appdownload_container_palva .app_fotbottom .app_fotbottom_details .zx_tbt{width: 358px;height: 68px;display: block;background-position: -342px -215px;position: absolute;left: 0;top: 33%;}
+.appdownload_container_palva .ft_client_download{float: left;}
+.appdownload_container_palva .ft_client_download a{display: block;width: 168px;height: 56px;}
+.appdownload_container_palva .ft_client_download .ft_ios_client{background-position: 0 -215px;}
+.appdownload_container_palva .ft_client_download .ft_android_client{background-position: -170px -215px;margin-top: 20px;}
+.appdownload_container_palva .ft_code_pic{width: 132px;height: 132px;float: right;display:block;}
+.appdownload_container_palva .code_client{width: 320px;margin: 0 auto;position: absolute;left: 0;top: 48%;}
+.appdownload_container_palva .app_common{width: 100%;height: 100%;}
+.link_bottom{position: absolute;left: 0;bottom: 0;width: 100%;height: 40px;background-color: #222324;font-size: 14px;margin: 0 auto;color: #e7e7e7;text-align: center;line-height: 40px;}
+.link_bottom a{color: #e7e7e7;margin-left: 30px;}
+
+.footer_bottom{min-width: 100%;overflow: hidden;}
+.footer_bottom_container{width: 100%;}
+
+.code_download_new .code_pic {
+    width: 146px;
+    height: 146px;
+}
