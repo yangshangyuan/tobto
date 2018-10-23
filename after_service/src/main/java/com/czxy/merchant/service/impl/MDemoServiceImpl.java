@@ -1,6 +1,5 @@
 package com.czxy.merchant.service.impl;
 
-import com.czxy.merchant.service.Demo;
 import com.czxy.merchant.service.MDemoService;
 import com.czxy.tobto.dao.MDemoMapper;
 import com.czxy.tobto.dao.MerchantDemoMapper;
@@ -11,11 +10,9 @@ import com.czxy.tobto.domain.MDemo;
 import com.czxy.tobto.domain.MerchantDemo;
 import com.czxy.tobto.domain.TMerchant;
 import com.czxy.utils.DataGridResult;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.WildcardQueryBuilder;
-import org.elasticsearch.search.sort.SortBuilders;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,7 +20,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -46,7 +42,7 @@ public class MDemoServiceImpl implements MDemoService {
     利用es进行分页
      */
     @Override
-    public DataGridResult findPage(String dName,Integer page,Integer rows){
+    public DataGridResult findPage(TMerchant tMerchant,String dName,Integer page,Integer rows){
 
        /* PageHelper.startPage(page,rows);
         List<MDemo> mDemos = mDemoMapper.selectAll();
@@ -65,11 +61,23 @@ public class MDemoServiceImpl implements MDemoService {
 //            BeanUtils.copyProperties(mDemo,esmDemo);
 //            esmDemoRepository.save(esmDemo);
 //        }
+
+
+        List<MDemo> all = mDemoMapper.findAll(tMerchant.getMerchantId());
         NativeSearchQueryBuilder builder = new NativeSearchQueryBuilder();
+        BoolQueryBuilder boolQuery  = QueryBuilders.boolQuery();
 
         if (!"null".equals(dName)&&dName!=null) {
-            WildcardQueryBuilder queryBuilder = QueryBuilders.wildcardQuery("dName", "*" + dName + "*");
-            builder.withQuery(queryBuilder);
+            for (MDemo mDemo: all) {
+                WildcardQueryBuilder queryBuilder = QueryBuilders.wildcardQuery("dName", "*" + dName + "*");
+                boolQuery.must(queryBuilder);
+                WildcardQueryBuilder queryBuilder2 = QueryBuilders.wildcardQuery("dId",   mDemo.getdId()+"" );
+                boolQuery.must(queryBuilder2);
+                builder.withQuery(boolQuery);
+
+            }
+
+            //boolQuery.must(queryBuilder);
             // 执行分页
            // builder.withSort(SortBuilders.fieldSort("xxx"));
         }
