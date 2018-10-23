@@ -1,15 +1,21 @@
 package com.czxy.merchant.service.impl;
 
+import com.czxy.merchant.service.Demo;
 import com.czxy.merchant.service.MDemoService;
 import com.czxy.tobto.dao.MDemoMapper;
+import com.czxy.tobto.dao.MerchantDemoMapper;
 import com.czxy.tobto.dao.TMerchantMapper;
 import com.czxy.tobto.dao.repository.ESMDemoRepository;
 import com.czxy.tobto.domain.ES.ESMDemo;
 import com.czxy.tobto.domain.MDemo;
+import com.czxy.tobto.domain.MerchantDemo;
 import com.czxy.tobto.domain.TMerchant;
 import com.czxy.utils.DataGridResult;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.WildcardQueryBuilder;
+import org.elasticsearch.search.sort.SortBuilders;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +23,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -32,11 +39,14 @@ public class MDemoServiceImpl implements MDemoService {
 
     @Autowired
     private ESMDemoRepository esmDemoRepository;
+
+    @Autowired
+    private MerchantDemoMapper merchantDemoMapper;
     /*
     利用es进行分页
      */
     @Override
-    public DataGridResult findPage(Integer page,Integer rows){
+    public DataGridResult findPage(String dName,Integer page,Integer rows){
 
        /* PageHelper.startPage(page,rows);
         List<MDemo> mDemos = mDemoMapper.selectAll();
@@ -56,6 +66,13 @@ public class MDemoServiceImpl implements MDemoService {
 //            esmDemoRepository.save(esmDemo);
 //        }
         NativeSearchQueryBuilder builder = new NativeSearchQueryBuilder();
+
+        if (!"null".equals(dName)&&dName!=null) {
+            WildcardQueryBuilder queryBuilder = QueryBuilders.wildcardQuery("dName", "*" + dName + "*");
+            builder.withQuery(queryBuilder);
+            // 执行分页
+           // builder.withSort(SortBuilders.fieldSort("xxx"));
+        }
         builder.withPageable(PageRequest.of(page - 1, rows));
         Page<ESMDemo> search = this.esmDemoRepository.search(builder.build());
         for (ESMDemo esmDemo: search) {
@@ -85,6 +102,8 @@ public class MDemoServiceImpl implements MDemoService {
         for (String id: ids) {
             if (id!=null){
                 ESMDemo esmDemo = new ESMDemo();
+
+
                 MDemo mDemo = mDemoMapper.selectByPrimaryKey(Integer.parseInt(id));
                 mDemo.setdState(0);
                 BeanUtils.copyProperties(mDemo,esmDemo);
@@ -112,16 +131,28 @@ public class MDemoServiceImpl implements MDemoService {
 
     @Override
     public void add(MDemo mDemo1) {
+
         mDemo1.setdRecommend(null);
         mDemo1.setdState(null);
         mDemoMapper.insert(mDemo1);
-        esmDemoRepository.deleteAll();
-        List<MDemo> mDemos = mDemoMapper.selectAll();
-       for (MDemo mDemo: mDemos) {
-           ESMDemo esmDemo = new ESMDemo();
-            BeanUtils.copyProperties(mDemo,esmDemo);
-            esmDemoRepository.save(esmDemo);
-        }
+        MDemo mDemo = mDemoMapper.selectOne(mDemo1);
+        MerchantDemo merchantDemo = new MerchantDemo();
+        merchantDemo.setMdDId(mDemo.getdId());
+        merchantDemo.setMdMId(1);//TODO 此处一个是登录后台商家的id，从session中获取
+        merchantDemoMapper.insert(merchantDemo);
+
+        ESMDemo esmDemo = new ESMDemo();
+        BeanUtils.copyProperties(mDemo,esmDemo);
+        esmDemoRepository.save(esmDemo);
+
+//        esmDemoRepository.deleteAll();
+//        List<MDemo> mDemos = mDemoMapper.selectAll();
+//       for (MDemo mDemo: mDemos) {
+//           ESMDemo esmDemo = new ESMDemo();
+//            BeanUtils.copyProperties(mDemo,esmDemo);
+//            esmDemoRepository.save(esmDemo);
+//
+//        }
     }
 
 
