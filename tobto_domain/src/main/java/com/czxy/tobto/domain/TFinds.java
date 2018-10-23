@@ -33,4 +33,20 @@ public class TFinds {
     public Integer getfShow() {
         return fShow;
     }
+
+    public void setfId(Integer fId) {
+        this.fId = fId;
+    }
+
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
+
+    public void setfUrl(String fUrl) {
+        this.fUrl = fUrl;
+    }
+
+    public void setfShow(Integer fShow) {
+        this.fShow = fShow;
+    }
 }
