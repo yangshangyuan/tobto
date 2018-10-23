@@ -31,7 +31,7 @@
                 pagination : true,
                 toolbar : toolbar,
                 url : "/product",
-                idField : 'id',
+                idField : 'dId',
                 columns : columns,
                 method: "get"
             });
@@ -129,6 +129,10 @@
                 //$("#standardWindow").window('open');
                 $("#updateWindow").window('open');
             }
+        },{
+            id: 'searchBtn',
+            text: '查询',
+            iconCls: 'icon-search'
         }];
 
         // 定义列
@@ -298,6 +302,7 @@
 
 
 </div>
+
 </body>
 <script type="text/javascript">
 
@@ -355,7 +360,50 @@
             }
         });
 
+
+        $('#searchWindow').window({
+            title: '查询分区',
+            width: 400,
+            modal: true,
+            shadow: true,
+            closed: true,
+            height: 400,
+            resizable:false
+        });
+        $("#searchBtn").click(function () {
+            $('#searchWindow').window("open");
+        })
+
+        $("#btn").click(function(){
+            var title = $("#title").val();
+            alert(title)
+            //将json数据绑定在datagrid上，完成带有条件的查询请求
+            $("#grid").datagrid("load",{"dName":title});
+            //关闭查询窗口
+            $("#searchWindow").window("close");
+        });
+
     })
 
 </script>
+<div class="easyui-window" title="查询商品窗口" id="searchWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
+    <div style="overflow:auto;padding:5px;" border="false">
+        <form>
+            <table class="table-edit" width="80%" align="center">
+                <tr class="title">
+                    <td colspan="2">查询条件</td>
+                </tr>
+                <tr>
+                    <td>商品名称</td>
+                    <td>
+                        <input type="text" id="title" name="dName" class="easyui-validatebox" required="true" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
 </html>
