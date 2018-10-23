@@ -9,7 +9,7 @@
     <link rel="icon" href="/favicon.ico">
     <script type="text/javascript" src="login.js"></script>
     <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
-    <title>管理后台</title>
+    <title>后台登录页面</title>
 </head>
 <body class="login-wrap">
     <div class="login-container">
@@ -27,12 +27,19 @@
                 </label>
             </div>
             <button type="button" id="subButton" class="login-button">登录<i class="ai ai-enter"></i></button>
+            <button type="button" id="regButton" class="login-button">注册<i class="ai ai-enter"></i></button>
         </form>
     </div>
 </body>
 <script src="assets/layui.js"></script>
 <script src="index.js" data-main="login"></script>
 <script type="text/javascript">
+
+    $("#regButton").on("click",function () {
+        location.href = '/merchant/register.html';
+    })
+
+
     $("#subButton").on("click",function () {
         var loginName = $("#username").val();
         var loginPass = $("#password").val();
@@ -43,7 +50,6 @@
                 type:'get',
                 statusCode:{
                     200 : function (datas) {
-                        // alert(datas)
                         console.log(datas)
                         alert("登陆成功");
                         location.href = datas;

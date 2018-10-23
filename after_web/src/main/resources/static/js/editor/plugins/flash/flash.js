@@ -13,7 +13,6 @@ KindEditor.plugin('flash', function(K) {
 		allowFileManager = K.undef(self.allowFileManager, false),
 		formatUploadUrl = K.undef(self.formatUploadUrl, true),
 		extraParams = K.undef(self.extraFileUploadParams, {}),
-		filePostName = K.undef(self.filePostName, 'imgFile'),
 		uploadJson = K.undef(self.uploadJson, self.basePath + 'php/upload_json.php');
 	self.plugin.flash = {
 		edit : function() {
@@ -87,7 +86,7 @@ KindEditor.plugin('flash', function(K) {
 			if (allowFlashUpload) {
 				var uploadbutton = K.uploadbutton({
 					button : K('.ke-upload-button', div)[0],
-					fieldName : filePostName,
+					fieldName : 'imgFile',
 					extraParams : extraParams,
 					url : K.addParam(uploadJson, 'dir=flash'),
 					afterUpload : function(data) {
@@ -99,7 +98,7 @@ KindEditor.plugin('flash', function(K) {
 							}
 							urlBox.val(url);
 							if (self.afterUpload) {
-								self.afterUpload.call(self, url, data, name);
+								self.afterUpload.call(self, url);
 							}
 							alert(self.lang('uploadSuccess'));
 						} else {
@@ -128,9 +127,6 @@ KindEditor.plugin('flash', function(K) {
 							clickFn : function(url, title) {
 								if (self.dialogs.length > 1) {
 									K('[name="url"]', div).val(url);
-									if (self.afterSelectFile) {
-										self.afterSelectFile.call(self, url);
-									}
 									self.hideDialog();
 								}
 							}
@@ -153,8 +149,6 @@ KindEditor.plugin('flash', function(K) {
 		},
 		'delete' : function() {
 			self.plugin.getSelectedFlash().remove();
-			// [IE] 删除图片后立即点击图片按钮出错
-			self.addBookmark();
 		}
 	};
 	self.clickToolbar(name, self.plugin.flash.edit);

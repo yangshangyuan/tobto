@@ -63,7 +63,7 @@ KindEditor.plugin('emoticons', function(K) {
 			parentDiv.append(table);
 			if (previewDiv) {
 				K(table).mouseover(function() {
-					previewDiv.show('block');
+					previewDiv.show();
 				});
 				K(table).mouseout(function() {
 					previewDiv.hide();
