@@ -1,13 +1,10 @@
 package com.czxy.tobto.domain.ES;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Table(name = "t_advertising")
 @Document(indexName = "tbt", type = "tbt",shards = 5,replicas = 1)
 public class EsTAdvertising {
 

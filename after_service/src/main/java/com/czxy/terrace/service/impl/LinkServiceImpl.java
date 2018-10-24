@@ -6,17 +6,17 @@ import com.czxy.tobto.dao.repository.TFindsRepository;
 import com.czxy.tobto.domain.ES.ESTFinds;
 import com.czxy.tobto.domain.TFinds;
 import com.czxy.utils.vo.DataGridResultInfo;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.WildcardQueryBuilder;
+import org.junit.Test;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 
@@ -45,9 +45,6 @@ public class LinkServiceImpl implements LinkService {
         builder.withPageable(PageRequest.of(page-1,rows));
         builder.withQuery(boolQuery);
         Page<ESTFinds> search = tFindsRepository.search(builder.build());
-      /*  PageHelper.startPage(page,rows);
-        List<TFinds> tFinds = tFindsMapper.selectAll();
-        PageInfo<TFinds> info = new PageInfo(tFinds);*/
         DataGridResultInfo resultInfo = new DataGridResultInfo();
         resultInfo.setTotal(search.getTotalElements());
         resultInfo.setRows(search.getContent());
@@ -64,19 +61,30 @@ public class LinkServiceImpl implements LinkService {
 
     @Override
     public void update(TFinds tFinds) {
-        TFinds tFinds1 = tFindsMapper.selectByPrimaryKey(tFinds.getfId());
-        if (tFinds1.getfShow()==null){
-            TFinds tf = new TFinds();
-            BeanUtils.copyProperties(tFinds1,tf);
-            tf.setfShow(1);
-            tFindsMapper.updateByPrimaryKey(tf);
-            syncLink(tf);
-        }else {
+
+        TFinds tFinds1 = tFindsMapper.selectOne(tFinds);
+        Integer integer = tFinds1.getfShow();
+        if (integer!=null){
+            System.out.println(1);
             TFinds tf = new TFinds();
             BeanUtils.copyProperties(tFinds1,tf);
             tf.setfShow(null);
             tFindsMapper.updateByPrimaryKey(tf);
-            syncLink(tf);
+            ESTFinds estFinds = new ESTFinds();
+            BeanUtils.copyProperties(tf,estFinds);
+            tFindsRepository.save(estFinds);
+
+
+        }else {
+            System.out.println(2);
+            TFinds tf = new TFinds();
+            BeanUtils.copyProperties(tFinds1,tf);
+            tf.setfShow(1);
+            tFindsMapper.updateByPrimaryKey(tf);
+            ESTFinds estFinds = new ESTFinds();
+            BeanUtils.copyProperties(tf,estFinds);
+            tFindsRepository.save(estFinds);
+
         }
 
     }
