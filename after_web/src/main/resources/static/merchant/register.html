@@ -8,12 +8,23 @@
     <link rel="stylesheet" href="assets/css/login.css">
     <script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
     <link rel="icon" href="/favicon.ico">
-    <title>管理后台</title>
+    <title>客服注册</title>
     <script type="text/javascript">
         $(function () {
             $.ajax({
-                url:'/register',
-                type:'get'
+                url:'/register/getMerchant',
+                type:'get',
+                statusCode:{
+                    200 : function (datas) {
+                        console.log(datas)
+                        var str = "";
+                        $(datas).each(function () {
+                            alert(this.merchantId)
+                            str += "<option value='"+this.merchantId+"'>"+this.merchantName+"</option>";
+                        })
+                        $("#merchant").append(str);
+                    }
+                }
             })
         })
     </script>
@@ -22,13 +33,13 @@
     <div class="login-container">
         <form class="login-form">
             <div class="input-group">
-                <input type="text" id="username" class="input-field">
+                <input type="text" id="username" name="loginName" class="input-field">
                 <label for="username" class="input-label">
                     <span class="label-title">登录名</span>
                 </label>
             </div>
             <div class="input-group">
-                <input type="password" id="password" class="input-field">
+                <input type="password" id="password" name="loginName" class="input-field">
                 <label for="password" class="input-label">
                     <span class="label-title">密码</span>
                 </label>
@@ -42,7 +53,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">证件类型</label>
                 <div class="layui-input-inline">
-                    <select name="" lay-verify="required" lay-search="">
+                    <select name="idGenre" lay-verify="required" lay-search="">
                         <option value="">请选择在证件类型</option>
                         <option value="0">身份证</option>
                         <option value="1">军官证</option>
@@ -54,15 +65,14 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">身份证号</label>
                 <div class="layui-input-block">
-                    <input type="text" name="identity" lay-verify="identity" placeholder="" autocomplete="off" class="layui-input">
+                    <input type="text" name="idNumber" lay-verify="identity" placeholder="" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label">所属商家</label>
                 <div class="layui-input-inline">
-                    <select name="" lay-verify="required" lay-search="">
+                    <select name="merchant" id="merchant" lay-verify="required" lay-search="">
                         <option value="">请选择所属商家</option>
-                        <option value="3">护  照</option>
                     </select>
                 </div>
             </div>
