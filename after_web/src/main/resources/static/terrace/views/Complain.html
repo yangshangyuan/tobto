@@ -13,21 +13,22 @@
     <script type="text/javascript">
         $(function () {
             $('#grid').datagrid({
-                title: '商品列表',
+                title: '投诉管理',
                 pageNumber: 1,
                 pageSize: 10,
                 pageList: [5, 10, 15, 20],
                 method: "GET",
-                url: '/terrace/findAdvByPage',
+                url: '/terrace/findComByPage',
                 striped: true,
                 pagination: true,
                 fitColumns: true,
                 toolbar: toolbar,
                 columns: [[
                     //此处编写页面显示的field
-                    {field:'aId',title:'编号',width:100},
-                    {field:'aText',title:'广告标题',width:100},
-                    {field:'aPhoto',title:'图片',width:100,align:'right'}
+                    {field:'complainId',title:'编号',width:100},
+                    {field:'user',title:'投诉者',width:100},
+                    {field:'complainText',title:'投诉内容',width:100},
+                    {field:'complainState',title:'投诉状态',width:100,align:'right'}
                 ]]
             });
 
@@ -37,7 +38,7 @@
                 // 判断是否form中所有表单对象 都是通过校验
                 if ($("#standardForm").form('validate')) {
                     $.ajax({
-                        type: "get",
+                        type: "post",
                         url: "/terrace/addAdv",
                         data: $("#standardForm").serialize(),
                         statusCode: {
@@ -60,19 +61,19 @@
             // 修改的保存
             $("#update").bind('click', function () {
                 //此处编写修改的请求内容
-                var Advs = $('#grid').datagrid('getSelections')
-                if(Advs!=null) {
+                var products = $('#grid').datagrid('getSelections')
+                if(products!=null) {
                     // 判断是否form中所有表单对象 都是通过校验
                     if ($("#updateForm").form('validate')) {
                         $.ajax({
-                            method:"POST",
-                            url: "/terrace/update",
+                            method:"post",
+                            url: "",
                             data: $("#updateForm").serialize(),
                             statusCode: {
                                 201: function () {
                                     $.messager.alert('提示', '修改成功!');
                                     $("#updateWindow").window("close")
-                                    $('#grid').datagrid('load');
+                                    $('#grid').datagrid('reload');
                                 },
                                 500: function () {
                                     $.messager.alert('提示', '修改失败!');

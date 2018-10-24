@@ -9,4 +9,7 @@ public class AfterWebApplication {
     public static void main(String[] args) {
         SpringApplication.run(AfterWebApplication.class, args);
     }
+
+
+
 }

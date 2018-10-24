@@ -1,8 +1,9 @@
 package com.czxy.tobto.domain;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+@Entity
 @Table(name = "t_advertising")
 public class TAdvertising {
 

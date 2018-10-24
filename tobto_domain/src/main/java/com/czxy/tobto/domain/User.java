@@ -1,6 +1,11 @@
 package com.czxy.tobto.domain;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "user")
 public class User {
+    @Id
     private Integer userId;
 
     private String loginName;
@@ -22,39 +27,87 @@ public class User {
     public User() {
     }
 
+    public User(Integer userId, String loginName, String loginPassword, String compellation, Integer idGenre, String idNumber, Integer userShow, Integer uService, Integer uPower) {
+        this.userId = userId;
+        this.loginName = loginName;
+        this.loginPassword = loginPassword;
+        this.compellation = compellation;
+        this.idGenre = idGenre;
+        this.idNumber = idNumber;
+        this.userShow = userShow;
+        this.uService = uService;
+        this.uPower = uPower;
+    }
+
     public Integer getUserId() {
         return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getLoginName() {
         return loginName;
     }
 
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
+    }
+
     public String getLoginPassword() {
         return loginPassword;
+    }
+
+    public void setLoginPassword(String loginPassword) {
+        this.loginPassword = loginPassword;
     }
 
     public String getCompellation() {
         return compellation;
     }
 
+    public void setCompellation(String compellation) {
+        this.compellation = compellation;
+    }
+
     public Integer getIdGenre() {
         return idGenre;
+    }
+
+    public void setIdGenre(Integer idGenre) {
+        this.idGenre = idGenre;
     }
 
     public String getIdNumber() {
         return idNumber;
     }
 
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
+    }
+
     public Integer getUserShow() {
         return userShow;
+    }
+
+    public void setUserShow(Integer userShow) {
+        this.userShow = userShow;
     }
 
     public Integer getuService() {
         return uService;
     }
 
+    public void setuService(Integer uService) {
+        this.uService = uService;
+    }
+
     public Integer getuPower() {
         return uPower;
+    }
+
+    public void setuPower(Integer uPower) {
+        this.uPower = uPower;
     }
 }
