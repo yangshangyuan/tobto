@@ -1,5 +1,6 @@
 package com.czxy.tobto.domain;
 
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -7,6 +8,7 @@ import javax.persistence.Table;
  */
 @Table(name = "t_finds")
 public class TFinds {
+    @Id
     private Integer fId;
 
     private String fName;
@@ -22,31 +24,41 @@ public class TFinds {
         return fId;
     }
 
-    public String getfName() {
-        return fName;
-    }
-
-    public String getfUrl() {
-        return fUrl;
-    }
-
-    public Integer getfShow() {
-        return fShow;
-    }
-
     public void setfId(Integer fId) {
         this.fId = fId;
+    }
+
+    public String getfName() {
+        return fName;
     }
 
     public void setfName(String fName) {
         this.fName = fName;
     }
 
+    public String getfUrl() {
+        return fUrl;
+    }
+
     public void setfUrl(String fUrl) {
         this.fUrl = fUrl;
     }
 
+    public Integer getfShow() {
+        return fShow;
+    }
+
     public void setfShow(Integer fShow) {
         this.fShow = fShow;
+    }
+
+    @Override
+    public String toString() {
+        return "TFinds{" +
+                "fId=" + fId +
+                ", fName='" + fName + '\'' +
+                ", fUrl='" + fUrl + '\'' +
+                ", fShow=" + fShow +
+                '}';
     }
 }

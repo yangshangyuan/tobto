@@ -26,8 +26,9 @@ public class AfterWebTest {
     @Autowired
     private TFindsRepository tFindsRepository;
 
-    @Test
+  /*  @Test
     public void syncTest(){
+        tFindsRepository.deleteAll();
         List<TFinds> tFinds = tFindsMapper.selectAll();
         ArrayList<ESTFinds> esList  =  new ArrayList<>();
         for (TFinds tf : tFinds){
@@ -36,5 +37,15 @@ public class AfterWebTest {
             esList.add(estFinds);
         }
         tFindsRepository.saveAll(esList);
+    }*/
+
+    @Test
+    public void demoTest(){
+        TFinds tFinds = new TFinds();
+        tFinds.setfId(7);
+        tFinds.setfName("测试");
+        tFinds.setfUrl("www.test.com");
+        tFinds.setfShow(1);
+        tFindsMapper.updateByPrimaryKey(tFinds);
     }
 }

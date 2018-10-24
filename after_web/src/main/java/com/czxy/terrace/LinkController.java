@@ -3,6 +3,7 @@ package com.czxy.terrace;
 import com.czxy.terrace.service.LinkService;
 import com.czxy.tobto.domain.TFinds;
 import com.czxy.utils.vo.DataGridResultInfo;
+import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +39,7 @@ public class LinkController {
     @PutMapping("/updataTFinds")
     public ResponseEntity<Void> update(TFinds tFinds) {
         try {
-          //System.out.println(tFinds);
+          System.out.println(tFinds+"这是controller的");
             linkService.update(tFinds);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
@@ -63,4 +64,5 @@ public class LinkController {
         }
 
     }
+
 }
