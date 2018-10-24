@@ -12,6 +12,7 @@ import com.czxy.tobto.domain.TMerchant;
 import com.czxy.utils.DataGridResult;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.TermQueryBuilder;
 import org.elasticsearch.index.query.WildcardQueryBuilder;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,24 +64,34 @@ public class MDemoServiceImpl implements MDemoService {
 //        }
 
 
-        List<MDemo> all = mDemoMapper.findAll(tMerchant.getMerchantId());
+
         NativeSearchQueryBuilder builder = new NativeSearchQueryBuilder();
         BoolQueryBuilder boolQuery  = QueryBuilders.boolQuery();
 
         if (!"null".equals(dName)&&dName!=null) {
-            for (MDemo mDemo: all) {
+
                 WildcardQueryBuilder queryBuilder = QueryBuilders.wildcardQuery("dName", "*" + dName + "*");
                 boolQuery.must(queryBuilder);
-                WildcardQueryBuilder queryBuilder2 = QueryBuilders.wildcardQuery("dId",   mDemo.getdId()+"" );
-                boolQuery.must(queryBuilder2);
-                builder.withQuery(boolQuery);
 
-            }
 
             //boolQuery.must(queryBuilder);
             // 执行分页
            // builder.withSort(SortBuilders.fieldSort("xxx"));
         }
+       // List<MDemo> all = mDemoMapper.findAll(tMerchant.getMerchantId());
+//        for (MDemo mDemo: all) {
+//            WildcardQueryBuilder queryBuilder2 = QueryBuilders.wildcardQuery("dId",   mDemo.getdId()+"" );
+//            boolQuery.must(queryBuilder2);
+//        }
+        List<MerchantDemo> merchantDemos = merchantDemoMapper.find(tMerchant.getMerchantId());
+        for (MerchantDemo mDemo: merchantDemos) {
+            System.out.println(mDemo.getMdDId());
+            TermQueryBuilder dId = QueryBuilders.termQuery("dId", mDemo.getMdDId());
+            boolQuery.should(dId);
+        }
+//        TermQueryBuilder dId = QueryBuilders.termQuery("dId", 1);
+//        boolQuery.should(dId);
+        builder.withQuery(boolQuery);
         builder.withPageable(PageRequest.of(page - 1, rows));
         Page<ESMDemo> search = this.esmDemoRepository.search(builder.build());
         for (ESMDemo esmDemo: search) {

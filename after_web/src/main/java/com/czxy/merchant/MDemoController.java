@@ -32,10 +32,10 @@ public class MDemoController {
 
         try {
            TMerchant tMerchant = (TMerchant)session.getAttribute("merchant");
-//            if (tMerchant==null){
-//                response.sendRedirect("http://localhost:8088/");
-//                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//            }
+            if (tMerchant==null){
+                response.sendRedirect("http://localhost:8088/");
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
             DataGridResult result = mDemoService.findPage(tMerchant,dName, page, rows);
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception e) {
