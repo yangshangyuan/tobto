@@ -1,5 +1,6 @@
 package com.czxy.utils;
 
+
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
@@ -166,5 +167,5 @@ public class PasswordUtil {
         int d2 = n % 16;
         return hexDigits[d1] + hexDigits[d2];
     }
-    
+
 }
