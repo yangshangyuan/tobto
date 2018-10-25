@@ -3,7 +3,6 @@ package com.czxy.tobto.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
 public class User {
     @Id
     private Integer userId;
@@ -110,4 +109,5 @@ public class User {
     public void setuPower(Integer uPower) {
         this.uPower = uPower;
     }
+
 }
