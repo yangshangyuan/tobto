@@ -3,7 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <title>广告页面</title>
+    <title>投诉页面</title>
     <link  rel="stylesheet" type="text/css" href="../../js/easyui/themes/default/easyui.css"></link>
     <link  rel="stylesheet" type="text/css" href="../../js/easyui/themes/icon.css"></link>
 
@@ -26,9 +26,17 @@
                 columns: [[
                     //此处编写页面显示的field
                     {field:'complainId',title:'编号',width:100},
-                    {field:'user',title:'投诉者',width:100},
+                    {field:'loginName',title:'投诉者',width:100},
                     {field:'complainText',title:'投诉内容',width:100},
-                    {field:'complainState',title:'投诉状态',width:100,align:'right'}
+                    {field:'complainState',title:'投诉状态',width:100,align:'right',
+                    formatter:function (value,row,index) {
+                        if (value==0){
+                            return "正在处理";
+                        } if (value==1){
+                            return "处理完毕";
+                        }
+                    }
+                    }
                 ]]
             });
 
@@ -38,8 +46,8 @@
                 // 判断是否form中所有表单对象 都是通过校验
                 if ($("#standardForm").form('validate')) {
                     $.ajax({
-                        type: "post",
-                        url: "/terrace/addAdv",
+                        type: "get",
+                        url: "/terrace/addCom",
                         data: $("#standardForm").serialize(),
                         statusCode: {
                             201: function () {
@@ -61,13 +69,13 @@
             // 修改的保存
             $("#update").bind('click', function () {
                 //此处编写修改的请求内容
-                var products = $('#grid').datagrid('getSelections')
-                if(products!=null) {
+                var coms = $('#grid').datagrid('getSelections')
+                if(coms!=null) {
                     // 判断是否form中所有表单对象 都是通过校验
                     if ($("#updateForm").form('validate')) {
                         $.ajax({
-                            method:"post",
-                            url: "",
+                            method:"POST",
+                            url: "/terrace/updateCom",
                             data: $("#updateForm").serialize(),
                             statusCode: {
                                 201: function () {
@@ -95,25 +103,21 @@
         function deletedata() {
 
             //返回选中多行
-            var advs = $('#grid').datagrid('getSelections')
+            var coms = $('#grid').datagrid('getSelections')
             //判断是否选中行
-            if (advs.length == 0) {
+            if (coms.length == 0) {
                 $.messager.alert("提示", "请选择要删除的行！", "info");
                 return;
             } else {
-                var aid = "";
+                var cid = "";
                 //批量获取选中行的评估模板ID
-                for (i = 0; i < advs.length; i++) {
-                    if (aid == "") {
-                        aid = advs[i].aId;
+                for (i = 0; i < coms.length; i++) {
+                    if (cid == "") {
+                        cid = coms[i].complainId;
                     } else {
-                        aid = advs[i].aId + "," + aid;
-
-
+                        cid = coms[i].complainId+ "," + cid;
                     }
                 }
-
-
                 $.messager.confirm('提示', '是否删除选中数据?', function (r) {
 
                     if (!r) {
@@ -123,7 +127,7 @@
                     $.ajax({
                         type: "GET",
                         async: false,
-                        url: "/terrace/deletes?ids=" + aid,
+                        url: "/terrace/deletesCom?ids=" + cid,
 
                         statusCode: {
                             201: function () {
@@ -161,8 +165,8 @@
                 text: '修改',
                 iconCls: 'icon-edit',
                 handler: function () {
-                    var hh = $('#grid').datagrid('getSelected')
-                    $("#updateForm").form("load",hh);
+                    var xx = $('#grid').datagrid('getSelected')
+                    $("#updateForm").form("load",xx);
                     //此处完成修改窗口的开和页面数据的回显
                     $("#updateWindow").window('open');
 
@@ -174,7 +178,7 @@
                 handler: deletedata
             }, {
                 id: 'button-text',
-                text: '广告名称:<input id="aText" name="aText" class="easyui-combobox" />',
+                text: '广告名称:<input id="complainText" name="complainText" class="easyui-combobox" />',
                 iconCls: 'icon-sea',
                 handler: function () {
                 }
@@ -192,11 +196,11 @@
             $("#btn").click(function () {
 
                 //获得查询的条件
-                var aText = $("#aText").val();
+                var complainText = $("#complainText").val();
 
 
                 //重新加载列表发送条件
-                $("#grid").datagrid("reload", {"aText": aText});
+                $("#grid").datagrid("reload", {"complainText": complainText});
             });
         });
     </script>
@@ -213,7 +217,7 @@
 
 <table id="grid"></table>
 <!--添加-->
-<div class="easyui-window" title="添加广告" id="standardWindow" collapsible="false" minimizable="false" maximizable="false"
+<div class="easyui-window" title="添加投诉" id="standardWindow" collapsible="false" minimizable="false" maximizable="false"
      modal="true" closed="true" style="width:400px;top:50px;left:200px">
     <div region="north" style="height:31px;overflow:hidden;" split="false" border="false">
         <div class="datagrid-toolbar">
@@ -226,15 +230,15 @@
         <form id="standardForm">
             <table class="table-edit" width="80%" align="center">
                 <tr>
-                    <td>广告名称</td>
+                    <td>投诉内容</td>
                     <td>
-                        <input type="text" name="aText" required="true"/>
+                        <input type="text" name="complainText" required="true"/>
                     </td>
                 </tr>
                 <tr>
-                    <td>广告图片</td>
+                    <td>投诉人</td>
                     <td>
-                        <input type="text" name="aPhoto" required="true"/>
+                        <input type="text" name="uId" required="true"/>
                     </td>
                 </tr>
 
@@ -252,7 +256,7 @@
 </div>
 
 <!--修改-->
-<div class="easyui-window" title="修改广告" id="updateWindow" collapsible="false" minimizable="false" maximizable="false"
+<div class="easyui-window" title="修改投诉" id="updateWindow" collapsible="false" minimizable="false" maximizable="false"
      modal="true" closed="true" style="width:400px;top:50px;left:200px">
     <div region="north" style="height:31px;overflow:hidden;" split="false" border="false">
         <div class="datagrid-toolbar">
@@ -265,19 +269,26 @@
         <form id="updateForm">
             <table class="table-edit" width="80%" align="center">
                 <!--隐藏域，商品id-->
-                <input type="hidden" name="aId" required="true"/>
+                <input type="hidden" name="complainId" required="true"/>
 
                 <tr>
-                    <td>广告名称</td>
+                    <td>投诉内容</td>
                     <td>
-                        <input type="text" name="aText"
+                        <input type="text" name="complainText"
                                class="easyui-validatebox" data-options="required:true"/>
                     </td>
                 </tr>
                 <tr>
-                    <td>广告图片</td>
+                    <td>投诉人</td>
                     <td>
-                        <input type="text" name="aPhoto"
+                        <input type="text" name="uId"
+                               class="easyui-validatebox" data-options="required:true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>投诉状态</td>
+                    <td>
+                        <input type="text" name="complainState"
                                class="easyui-validatebox" data-options="required:true"/>
                     </td>
                 </tr>
