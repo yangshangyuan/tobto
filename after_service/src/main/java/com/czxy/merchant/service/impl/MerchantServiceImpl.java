@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 @Transactional
@@ -30,5 +31,11 @@ public class MerchantServiceImpl implements MerchantService {
         Integer mId = userMerchant.getmId();
         TMerchant tMerchant = merchantMapper.selectByPrimaryKey(mId);
         return tMerchant;
+    }
+
+    @Override
+    public List<TMerchant> findAllMerchant() {
+        List<TMerchant> tMerchants = merchantMapper.selectAll();
+        return tMerchants;
     }
 }
