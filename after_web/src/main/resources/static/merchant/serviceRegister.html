@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="assets/css/layui.css">
+    <link rel="stylesheet" href="assets/css/login.css">
+    <script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
+    <link rel="icon" href="/favicon.ico">
+    <title>客服注册</title>
+    <script type="text/javascript">
+        $(function () {
+
+            $("#submit").on("click",function () {
+
+                var loginName = $("#username").val();
+                var loginPassword = $("#password").val();
+                var compellation = $("#compellation").val();
+                var idGenre = $("#idGenre").val();
+                var idNumber = $("#idNumber").val();
+                var merchant = $("#merchant").val();
+                var phone = $("#phone").val();
+                var vifyCode = $("#vifyCode").val();
+
+
+                $.ajax({
+                    url:'/register',
+                    type:'post',
+                    data:{"loginName":loginName,"loginPassword":loginPassword,"compellation":compellation,"phone":phone,"idGenre":idGenre,"idNumber":idNumber,"merchant":merchant,"vifyCode":vifyCode},
+                    statusCode:{
+                        200 : function (datas) {
+                            alert("注册成功")
+                            alert(datas);
+                            location.href=datas;
+                        },
+                        500 : function (datas) {
+                            alert(datas.responseText)
+                        }
+                    }
+                })
+            })
+
+            $.ajax({
+                url:'/register/getMerchant',
+                type:'get',
+                statusCode:{
+                    200 : function (datas) {
+                        console.log(datas)
+                        var str = "";
+                        $(datas).each(function () {
+                            str += "<option value='"+this.merchantId+"'>"+this.merchantName+"</option>";
+                        })
+                        $("#merchant").append(str);
+                    }
+                }
+            })
+
+
+
+
+
+        });
+
+        //实现注册页面验证码的60秒后发送效果,并发出请求
+        /**
+         * 发送短信倒计时功能：
+         * 当点击按钮之后
+         *    1 按钮显示倒计时功能
+         *    2 按钮在倒计时的过程中不可用
+         *    3 倒计时结束，按钮恢复功能
+         */
+        var nums = 60;
+        var clock = null;
+        var btn = null;
+        function sendCode(thisBtn) {
+            //发起ajax，请求后台
+            // 校验手机号是否符合规范
+            var tel = $("#phone").val();
+            // 编写校验规则
+            var regex = /^1[3,4,5,7,8,9][0-9]{9}$/;
+            if (regex.test(tel)) {
+                // 发出ajax
+                $.ajax({
+                    url:"/register/sendSms",
+                    type:"get",
+                    data:{"telephone":tel},
+                    statusCode:{
+                        500 : function () {
+                            alert("发送失败服务器错误");
+                        }
+                    }
+                })
+
+                this.btn = thisBtn;
+                // 按钮失效
+                thisBtn.disabled = true;
+                // 按钮的文字
+                thisBtn.value=nums+"秒后重新发送";
+                // 循环
+                clock = window.setInterval(doLoop,1000);
+
+            }else{
+                alert("手机号不符合规范")
+            }
+        }
+        function doLoop(){
+            nums--;
+            if(nums==0){
+                // 停止定时器
+                window.clearInterval(clock);
+                // 文字改变
+                btn.value="重新发送验证码";
+                // 按钮恢复
+                btn.disabled = false;
+                // 倒计时归60
+                nums=5;
+            }else{
+                // 改变文字显示
+                btn.value=nums+"秒后重新发送";
+            }
+        }
+    </script>
+</head>
+<body class="login-wrap">
+    <div class="login-container">
+        <form class="login-form">
+            <div class="input-group">
+                <input type="text" id="username" name="loginName" class="input-field">
+                <label for="username" class="input-label">
+                    <span class="label-title">登录名</span>
+                </label>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" name="loginPassword" class="input-field">
+                <label for="password" class="input-label">
+                    <span class="label-title">密码</span>
+                </label>
+            </div>
+            <div class="input-group">
+                <input type="text" id="compellation" name="compellation" class="input-field">
+                <label for="username" class="input-label">
+                    <span class="label-title">真实姓名</span>
+                </label>
+            </div>
+            <div class="input-group">
+                <input type="text" id="phone" name="phone" class="input-field">
+                <label for="username" class="input-label">
+                    <span class="label-title">手机号码</span>
+                </label>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">证件类型</label>
+                <div class="layui-input-inline">
+                    <select name="idGenre" id="idGenre" lay-verify="required" lay-search="">
+                        <option value="">请选择在证件类型</option>
+                        <option value="0">身份证</option>
+                        <option value="1">军官证</option>
+                        <option value="2">学生证</option>
+                        <option value="3">护  照</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">身份证号</label>
+                <div class="layui-input-block">
+                    <input type="text" name="idNumber" id="idNumber" lay-verify="identity" placeholder="" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">所属商家</label>
+                <div class="layui-input-inline">
+                    <select name="merchant" id="merchant" lay-verify="required" lay-search="">
+                        <option value="">请选择所属商家</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-inline">
+                    <input type="text" name="vifyCode" id="vifyCode" required lay-verify="required" placeholder="验证码" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux"><input type="button"  onclick="sendCode(this)" class="btn btn-default" value="获取验证码"></div>
+            </div>
+
+
+            <button type="button" id="submit" class="login-button">注册<i class="ai ai-enter"></i></button>
+        </form>
+    </div>
+</body>
+<script src="assets/layui.js"></script>
+<script src="index.js" data-main="login"></script>
+</html>
