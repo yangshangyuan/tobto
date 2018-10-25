@@ -8,12 +8,23 @@ public class UserMerchant {
     @Column(name = "m_id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer mId;
+
     @Transient
     private TMerchant tMerchant;
+
     @Column(name = "u_id")
     private Integer uId;
+
     @Transient
     private User user;
+
+    public UserMerchant() {
+    }
+
+    public UserMerchant(Integer mId, Integer uId) {
+        this.uId = uId;
+        this.mId = mId;
+    }
 
     public Integer getmId() {
         return mId;

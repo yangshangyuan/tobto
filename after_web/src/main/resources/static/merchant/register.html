@@ -1,75 +1,21 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>注册选择</title>
     <link rel="stylesheet" href="assets/css/layui.css">
     <link rel="stylesheet" href="assets/css/login.css">
     <script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
     <link rel="icon" href="/favicon.ico">
-    <title>管理后台</title>
-    <script type="text/javascript">
-        $(function () {
-            $.ajax({
-                url:'/register',
-                type:'get'
-            })
-        })
-    </script>
+    <script src="assets/layui.js"></script>
+    <script src="index.js" data-main="login"></script>
 </head>
 <body class="login-wrap">
-    <div class="login-container">
-        <form class="login-form">
-            <div class="input-group">
-                <input type="text" id="username" class="input-field">
-                <label for="username" class="input-label">
-                    <span class="label-title">登录名</span>
-                </label>
-            </div>
-            <div class="input-group">
-                <input type="password" id="password" class="input-field">
-                <label for="password" class="input-label">
-                    <span class="label-title">密码</span>
-                </label>
-            </div>
-            <div class="input-group">
-                <input type="text" id="" name="compellation" class="input-field">
-                <label for="username" class="input-label">
-                    <span class="label-title">真实姓名</span>
-                </label>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">证件类型</label>
-                <div class="layui-input-inline">
-                    <select name="" lay-verify="required" lay-search="">
-                        <option value="">请选择在证件类型</option>
-                        <option value="0">身份证</option>
-                        <option value="1">军官证</option>
-                        <option value="2">学生证</option>
-                        <option value="3">护  照</option>
-                    </select>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">身份证号</label>
-                <div class="layui-input-block">
-                    <input type="text" name="identity" lay-verify="identity" placeholder="" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">所属商家</label>
-                <div class="layui-input-inline">
-                    <select name="" lay-verify="required" lay-search="">
-                        <option value="">请选择所属商家</option>
-                        <option value="3">护  照</option>
-                    </select>
-                </div>
-            </div>
-            <button type="button" class="login-button">注册<i class="ai ai-enter"></i></button>
-        </form>
-    </div>
+<div class="login-container">
+    <form class="login-form">
+        <a href="merchantRegister.html" target="_top"><button type="button" id="merchant" class="login-button">商家注册<i class="ai ai-enter"></i></button></a>
+        <a href="serviceRegister.html" target="_top"><button type="button" id="service" class="login-button">客服注册<i class="ai ai-enter"></i></button></a>
+    </form>
+</div>
 </body>
-<script src="assets/layui.js"></script>
-<script src="index.js" data-main="login"></script>
 </html>
